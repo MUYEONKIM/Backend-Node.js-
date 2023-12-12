@@ -1,1 +1,1 @@
-require("./dep2");
+require("./dep2"); // {}
