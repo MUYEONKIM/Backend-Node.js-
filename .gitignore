@@ -8,3 +8,7 @@ lecture/ch06/readme.txt
 lecture/ch06/writeme.txt
 
 *.txt
+
+node_modules
+
+.env
