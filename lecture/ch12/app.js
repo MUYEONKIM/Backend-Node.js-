@@ -16,16 +16,27 @@ app.set('port', process.env.PORT || 3000) // 전역변수 같은 느낌
 //   throw new Error("에러가 났어요")
 // })
 
-app.use((req, res, next) => { // 에러 처리
-  console.log("모든 요청에 실행하고 싶어요")
-  next()
-}, (req, res, next) => {
-  try {
-    console.log(asdasad)
-  } catch (error) {
-    next(error)
+// app.use((req, res, next) => { // 에러 처리
+//   console.log("모든 요청에 실행하고 싶어요")
+//   next()
+// }, (req, res, next) => {
+//   try {
+//     console.log(asdasad)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+
+app.get('/', (req, res, next) => {
+  res.send('hello express');
+  if (ture) {
+    next('route')
+  } else {
+    next();
   }
-})
+}, (req, res) => {
+  console.log("실행되나요?")
+});
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -51,7 +62,7 @@ app.use((req, res, next) => {
   res.send('404지롱')
 })
 
-app.use((err, req, res, next) => { // 에러 미들웨어는 인자 4개를 다 써주어야 함 (생략 불가능)
+app.use((err, req, res, next) => { // 에러 미들웨어는 인자 4개를 다 써주어야 함 (생략 불가능), 모든 에러는 여기서 처리 
   // console.error(err);
   res.send("에러가 발생하였습니다. ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴ")
 })
